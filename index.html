@@ -1,0 +1,66 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ul id ="region1">
+</ul>
+<br/>
+<br/>
+<ol id ="region2">
+</ol>
+<script>
+function randomInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+//var v1 = new Vector(10000,10000,0);
+console.log(v1.toString());
+var rand1 = randomInterval(23,27)/100;
+var rand2 = randomInterval(28,32)/100;
+console.log("rand1 and rand2 " + rand1 + " " +  rand2)
+
+var popx = 10000;
+var popy = 10000;
+var oldpopx = popx;
+var oldpopy = popy;
+
+for(var i = 1; i <=100; i++ ){
+	//console.log((1-rand1)*popx)
+	popx = (((1-rand1))*oldpopx)+(oldpopy*rand2);
+	popy = (((1-rand2))*oldpopy)+(oldpopx*rand1);
+
+	oldpopx = popx;
+	oldpopy = popy;
+
+	console.log("Region 1: " + popx);
+	console.log("Region 2: " + popy);
+	console.log("Total pop: " + Math.ceil((popx+popy)));
+	
+	//update rand migration %
+	var rand1 = randomInterval(23,27)/100;
+	var rand2 = randomInterval(28,32)/100;
+
+	var xnode = document.createElement("LI");                 // Create a <li> node
+	var textnode = document.createTextNode(popx);         // Create a text node
+	xnode.appendChild(textnode);                              // Append the text to <li>
+	document.getElementById("region1").appendChild(xnode);
+
+	var ynode = document.createElement("LI"); 
+	var text  = document.createTextNode(popy);
+	ynode.appendChild(text);
+	document.getElementById("region2").appendChild(ynode);
+
+}
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
