@@ -1,0 +1,102 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ul id ="youth">
+</ul>
+<br/>
+<br/>
+<ol id ="adult">
+</ol>
+<br/>
+<br/>
+<ul id ="elder">
+</ul>
+
+<ul id ="youthe">
+</ul>
+<br/>
+<br/>
+<ol id ="adulte">
+</ol>
+<br/>
+<br/>
+<ul id ="eldere">
+</ul>
+
+<script>
+function randomInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+//var v1 = new Vector(300,100,400);
+//console.log(v1.toString());
+//var earthquake = randomInterval(0,100)/100;
+var youthd = 1000;
+var adultd = 1000;
+var elderd = 1000;
+
+var youthe = 1000;
+var adulte = 1000;
+var eldere = 1000;
+
+for(var i = 1; i <=100; i++ ){
+	
+	youthd = (.85*youthd)+(.21*adultd) +(.02*youthe);
+	adultd = (.18*youthd)+(.90*adultd) +(.2*adulte);
+	elderd = (.10*adultd)+(.25*elderd) +(.1*eldere);
+
+	youthe = (.82*youthe)+(.05*adulte) +(.04*youthd);
+	adulte = (.30*youthe)+(.88*adulte) +(.2*adultd);
+	eldere = (.20*adulte)+(.80*eldere) +(.05*elderd);
+
+	console.log("Youth: " + youth);
+	console.log("Adult: " + adult);
+	console.log("Elder: " + elder);
+	console.log("Total pop: " + Math.ceil((youth+adult+elder)));
+	
+
+	var xnode = document.createElement("LI");                 // Create a <li> node
+	var textnode = document.createTextNode(youthd);         // Create a text node
+	xnode.appendChild(textnode);                              // Append the text to <li>
+	document.getElementById("youth").appendChild(xnode);
+
+	var ynode = document.createElement("LI"); 
+	var text  = document.createTextNode(adultd);
+	ynode.appendChild(text);
+	document.getElementById("adult").appendChild(ynode);
+
+	var znode = document.createElement("LI"); 
+	var textznode  = document.createTextNode(elderd);
+	znode.appendChild(textznode);
+	document.getElementById("elder").appendChild(znode);
+
+	var anode = document.createElement("LI");                 // Create a <li> node
+	var atextnode = document.createTextNode(youthe);         // Create a text node
+	anode.appendChild(atextnode);                              // Append the text to <li>
+	document.getElementById("youthe").appendChild(anode);
+
+	var bnode = document.createElement("LI"); 
+	var btext  = document.createTextNode(adulte);
+	bnode.appendChild(btext);
+	document.getElementById("adulte").appendChild(bnode);
+
+	var cnode = document.createElement("LI"); 
+	var textcnode  = document.createTextNode(eldere);
+	cnode.appendChild(textcnode);
+	document.getElementById("eldere").appendChild(cnode);
+
+}
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>

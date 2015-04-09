@@ -19,20 +19,10 @@ function randomInterval(min,max)
 }
 
 //var v1 = new Vector(10000,10000,0);
-//console.log(v1.toString());
-var earthquake = randomInterval(0,100)/100;
-var migrationAlpha = 0;
-var migrationBeta = .30;
-
-if(earthquake > .06){
-	migrationAlpha = .25;
-}else{
-	migrationAlpha = .65;
-}
-
-//var rand1 = randomInterval(23,27)/100;
-//var rand2 = randomInterval(28,32)/100;
-//console.log("rand1 and rand2 " + rand1 + " " +  rand2)
+console.log(v1.toString());
+var rand1 = randomInterval(23,27)/100;
+var rand2 = randomInterval(28,32)/100;
+console.log("rand1 and rand2 " + rand1 + " " +  rand2)
 
 var popx = 10000;
 var popy = 10000;
@@ -41,8 +31,8 @@ var oldpopy = popy;
 
 for(var i = 1; i <=100; i++ ){
 	//console.log((1-rand1)*popx)
-	popx = (((1-migrationAlpha))*oldpopx)+(oldpopy*migrationBeta);
-	popy = (((1-migrationBeta))*oldpopy)+(oldpopx*migrationAlpha);
+	popx = (((1-rand1))*oldpopx)+(oldpopy*rand2);
+	popy = (((1-rand2))*oldpopy)+(oldpopx*rand1);
 
 	oldpopx = popx;
 	oldpopy = popy;
@@ -52,14 +42,8 @@ for(var i = 1; i <=100; i++ ){
 	console.log("Total pop: " + Math.ceil((popx+popy)));
 	
 	//update rand migration %
-	//var rand1 = randomInterval(23,27)/100;
-	//var rand2 = randomInterval(28,32)/100;
-	earthquake = randomInterval(0,100)/100;
-	if(earthquake > .06){
-		migrationAlpha = .25;
-	}else{
-		migrationAlpha = .65;
-	}
+	var rand1 = randomInterval(23,27)/100;
+	var rand2 = randomInterval(28,32)/100;
 
 	var xnode = document.createElement("LI");                 // Create a <li> node
 	var textnode = document.createTextNode(popx);         // Create a text node
