@@ -1,0 +1,70 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ul id ="youth">
+</ul>
+<br/>
+<br/>
+<ol id ="adult">
+</ol>
+<br/>
+<br/>
+<ul id ="elder">
+</ul>
+
+<script>
+function randomInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+//var v1 = new Vector(300,100,400);
+//console.log(v1.toString());
+var earthquake = randomInterval(0,100)/100;
+var youth = 300;
+var adult = 100;
+var elder = 400;
+
+
+for(var i = 1; i <=100; i++ ){
+	
+	youth = (.82*youth)+(.15*adult);
+	adult = (.18*youth)+(.88*adult);
+	elder = (.12*adult)+(.25*elder);
+
+
+	console.log("Youth: " + youth);
+	console.log("Adult: " + adult);
+	console.log("Elder: " + elder);
+	console.log("Total pop: " + Math.ceil((youth+adult+elder)));
+	
+
+	var xnode = document.createElement("LI");                 // Create a <li> node
+	var textnode = document.createTextNode(youth);         // Create a text node
+	xnode.appendChild(textnode);                              // Append the text to <li>
+	document.getElementById("youth").appendChild(xnode);
+
+	var ynode = document.createElement("LI"); 
+	var text  = document.createTextNode(adult);
+	ynode.appendChild(text);
+	document.getElementById("adult").appendChild(ynode);
+
+	var znode = document.createElement("LI"); 
+	var textznode  = document.createTextNode(elder);
+	znode.appendChild(textznode);
+	document.getElementById("elder").appendChild(znode);
+
+}
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
