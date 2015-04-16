@@ -1,0 +1,90 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ol id ="bobcat">
+</ol>
+<br/>
+<br/>
+<ol id ="rat">
+</ol>
+<br/>
+<br/>
+<ol id ="lion">
+<ol>
+
+
+
+<script>
+function randomInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+//var v1 = new Vector(300,100,400);
+//console.log(v1.toString());
+//var earthquake = randomInterval(0,100)/100;
+var lions = 4;
+var bobcat = 40;
+var rat = 200000;
+
+
+for(var i = 1; i <=100; i++ ){
+
+	if(bobcat > 0){
+		lion = Math.floor((1.22*bobcat));
+	}else{
+		lion = Math.floor(.45*lion);
+	}
+
+	if(lion <= 0 || bobcat <= 0){
+		lion = 0;
+	}
+
+
+	bobcat = Math.floor((.8*bobcat) + (.001*rat)) - (3*lion);
+	
+	if(rat <= 0 || bobcat <=0){
+		bobcat = 0;
+	}
+	
+	rat = Math.floor((1.15*rat)-(65*bobcat));
+	
+	if(rat < 0){
+		rat = 0;
+	}
+
+
+	console.log("Bobcat: " + bobcat);
+	console.log("Rat: " + rat);
+	console.log("Total pop: " + Math.ceil((bobcat+rat)));
+	
+
+	var xnode = document.createElement("LI");                 // Create a <li> node
+	var textnode = document.createTextNode(bobcat);         // Create a text node
+	xnode.appendChild(textnode);                              // Append the text to <li>
+	document.getElementById("bobcat").appendChild(xnode);
+
+	var ynode = document.createElement("LI"); 
+	var text  = document.createTextNode(rat);
+	ynode.appendChild(text);
+	document.getElementById("rat").appendChild(ynode);
+
+	var znode = document.createElement("LI"); 
+	var text  = document.createTextNode(lion);
+	znode.appendChild(text);
+	document.getElementById("lion").appendChild(znode);
+
+}
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
