@@ -1,0 +1,43 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ol id ="time">
+</ol>
+<br/>
+<br/>
+
+
+
+
+<script>
+var t = 0
+var b = 300
+var dT = .1
+var f = function(x,y){
+	return .124*x*(1-(x/10000)); // max capacity of 10000 
+};
+
+while(t < 50){
+	b = b + f(b,t)*dT;
+	t += dT;
+}
+
+
+var node = document.createElement("LI"); 
+var text  = document.createTextNode(b);
+node.appendChild(text);
+document.getElementById("time").appendChild(node)
+
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<ol id ="time">
+</ol>
+<br/>
+<br/>
+
+
+
+
+<script>
+var t = 0
+var b = 100 //bobcat pop
+var dT = .5
+var r = 1000 //rat pop
+
+var f = function(x,y){
+	return .124*x;
+};
+
+
+while(t < 300)
+	b = Math.floor(b +(-.08*b + .001*r)*dT);
+	if(b < 0 || b < 1){
+		b = 0;
+	}
+	console.log(b)
+	r = Math.floor(r+(.15*r-(-10*b))*dT);
+	if(r < 0 || r < 1){
+		r = 0;
+	}
+	console.log(r)
+	t += dT;
+}
+
+
+var node = document.createElement("LI"); 
+var text  = document.createTextNode(b);
+node.appendChild(text);
+document.getElementById("time").appendChild(node)
+
+var ynode = document.createElement("LI"); 
+var ytext  = document.createTextNode(r);
+ynode.appendChild(ytext);
+document.getElementById("time").appendChild(ynode)
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
