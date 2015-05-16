@@ -1,0 +1,108 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<ol id ="scores">
+</ol>
+<br/>
+<br/>
+
+
+
+
+<script>
+function randomInterval(min,max)
+{
+  return Math.random();
+}
+
+function avg(arr){
+  var sum = 0;
+  for(var i = 0; i < arr.length; i++){
+    sum += arr[i];
+  }
+
+  return sum/arr.length;
+}
+
+function stdev(arr){
+  var average = avg(arr);
+
+  var squareDiffs = arr.map(function(value){
+    var diff = value - average;
+    var sqrDiff = diff * diff;
+    return sqrDiff;
+  });
+  
+  var avgSquareDiff = avg(squareDiffs);
+ 
+  var stdDev = Math.sqrt(avgSquareDiff);
+  return stdDev;
+}
+
+var Rchoice = 0, Cchoice = 0;
+var Rpoints = 0, Cpoints = 0;
+for(var i = 0; i < 10; i++){
+  for(var j = 0; j < 500; j++){
+    var R1 = randomInterval(0,1);
+    var C1 = randomInterval(0,1);
+
+    if(R1 < .615){
+      Rchoice = 'A';
+    }else{
+      Rchoice = 'B';
+    }
+
+    if(C1 < .615){
+      Cchoice = 'A';
+    }else{
+      Cchoice = 'B';
+    }
+
+    if(Rchoice === Cchoice){
+      if(Rchoice === 'A'){
+        Rpoints -= 1;
+        Cpoints += 1;
+      }else{
+        Rpoints -= 5;
+        Cpoints += 5;
+      }
+    }
+
+    if(Rchoice === 'A' && Cchoice === 'B'){
+      Rpoints += 4;
+      Cpoints -= 4;
+    }else{
+      Rpoints += 3;
+      Cpoints -= 3;
+    }
+  } //end 500rounds
+
+var values = new Array(10);
+console.log(Rpoints);
+values.push(500 * Rpoints);
+
+}//end 10 games
+
+var avgVal = avg(values);
+var std = stdev(values);
+
+var node = document.createElement("LI"); 
+var text  = document.createTextNode(avgVal);
+node.appendChild(text);
+document.getElementById("scores").appendChild(node)
+
+var ynode = document.createElement("LI"); 
+var ytext  = document.createTextNode(avgVal);
+ynode.appendChild(ytext);
+document.getElementById("scores").appendChild(ynode)
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>

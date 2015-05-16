@@ -1,0 +1,90 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<h3>penguins</h3>
+<ul id ="penguin">
+</ul>
+<br/>
+<h3>Seals</h3>
+<ul id="seal">
+</ul>
+<br/>
+
+
+
+<script>
+//expected values for each match up
+function expectedPvP(p, q,scores){
+  return p*p*scores[0] + p*q*scores[1] + p*q*scores[2] + (1-p)*(1-p)*scores[3];
+}
+
+function expectedPvS(p, q,scores){
+  return p*q*scores[0] + p*(1-q)*scores[1] + (1-q)*p*scores[2] + (1-p)*(1-q)*scores[3];
+}
+
+function expectedSvS(p, q,scores){
+  return p*p*scores[0] + p*q*scores[1] + p*q*scores[2] + q*q*scores[3];
+}
+
+
+//specific to these score matrix 
+var PvP = expectedPvP(.75, .25,[.5, -.3, .8, -.1]);
+var PvS = expectedPvS(.75, .95,[.5, -.3, .8, -.1]);
+var SvS = expectedSvS(.95, .05,[.5, -.3, .8, -.1]);
+var SvP = PvS;
+
+
+//initial pop
+var penguinPop = 100;
+var sealPop = 100;
+
+//initial proportion of each 
+var penProp = penguinPop/(penguinPop+sealPop);
+var sealProp = sealPop/(penguinPop+sealPop);
+
+
+//growth rate initial 
+var k = penProp*PvP + sealProp*PvS;
+var l = sealProp*SvS + penProp*SvP;
+
+for(var i = 0; i < 30; i++){ 
+  totalPop = penguinPop + sealPop;
+
+  cap = (1-(totalPop/10000));
+ 
+  if(cap < 0){
+    cap = 0;
+  }
+ 
+  penguinPop = Math.floor(penguinPop+k*cap*penguinPop);
+  sealPop = Math.floor(sealPop+l*cap*sealPop);
+
+  penProp = penguinPop/(penguinPop+sealPop);
+  sealProp = sealPop/(penguinPop+sealPop);
+
+  k = penProp*PvP + sealProp*PvS;
+  l = sealProp*SvS + penProp*SvP;
+
+
+  var node = document.createElement("LI"); 
+  var text  = document.createTextNode(penguinPop);
+  node.appendChild(text);
+  document.getElementById("penguin").appendChild(node);
+
+  var ynode = document.createElement("LI"); 
+  var ytext  = document.createTextNode(sealPop);
+  ynode.appendChild(ytext);
+  document.getElementById("seal").appendChild(ynode);
+}
+
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
