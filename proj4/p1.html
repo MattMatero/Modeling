@@ -1,6 +1,6 @@
 <html>
 <head>
-<title></title>
+<title>P1</title>
 </head>
 <body>
 
@@ -8,8 +8,6 @@
 </ol>
 <br/>
 <br/>
-
-
 
 
 <script>
@@ -41,7 +39,7 @@ function stdev(arr){
   var stdDev = Math.sqrt(avgSquareDiff);
   return stdDev;
 }
-
+var values = [];
 var Rchoice = 0, Cchoice = 0;
 var Rpoints = 0, Cpoints = 0;
 for(var i = 0; i < 10; i++){
@@ -80,11 +78,15 @@ for(var i = 0; i < 10; i++){
     }
   } //end 500rounds
 
-var values = new Array(10);
-console.log(Rpoints);
-values.push(500 * Rpoints);
+
+values[i] = 500 *Rpoints;
 
 }//end 10 games
+
+
+for(var j = 0; j < values.length; j++){
+	console.log(values[j]);
+}
 
 var avgVal = avg(values);
 var std = stdev(values);
@@ -95,7 +97,7 @@ node.appendChild(text);
 document.getElementById("scores").appendChild(node)
 
 var ynode = document.createElement("LI"); 
-var ytext  = document.createTextNode(avgVal);
+var ytext  = document.createTextNode(std);
 ynode.appendChild(ytext);
 document.getElementById("scores").appendChild(ynode)
 
