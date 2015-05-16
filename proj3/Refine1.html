@@ -1,0 +1,45 @@
+<html>
+<head>
+<title></title>
+<script src ="Vector.js"></script>
+<script src ="Matrix.js"></script>
+</head>
+<body>
+
+<p>bobcat</p>
+<ul id ="bobcat">
+</ul>
+<br/>
+<br/>
+
+
+
+
+<script>
+var t = 0
+var b = 300
+var dT = .0001
+var f = function(x,y){
+	return .124*x;
+};
+
+/*
+	Graph this and actual continous graph to compare
+*/
+while(t < 20){
+	b = b + f(b,t)*dT;
+	t += dT;
+}
+
+var node = document.createElement("LI"); 
+var text  = document.createTextNode(b);
+node.appendChild(text);
+document.getElementById("bobcat").appendChild(node)
+
+</script>
+
+
+
+<h1>Math</h1>
+</body>
+</html>
